@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ClientRepository;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Integer;
 
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
 class Client
@@ -21,6 +22,10 @@ class Client
 
     #[ORM\Column(length: 255)]
     private ?string $email = null;
+
+    #[ORM\Column]
+    private ?int $borrowedBooksCount = null;
+
 
     public function getId(): ?int
     {
@@ -62,4 +67,18 @@ class Client
 
         return $this;
     }
+
+    public function getBorrowedBooksCount(): ?int
+    {
+        return $this->borrowedBooksCount;
+    }
+
+    public function setBorrowedBooksCount(int $borrowedBooksCount): static
+    {
+        $this->borrowedBooksCount = $borrowedBooksCount;
+
+        return $this;
+    }
+
+
 }
